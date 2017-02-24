@@ -1,0 +1,52 @@
+body {
+  text-align: center;
+}
+
+.stdout {
+  border: 1px solid gray;
+  width: 700px;
+  height: 800px;
+}
+
+.stdin input {
+  width: 400px;
+}
+
+.stdout div.msg {
+  clear: both;
+  float: right;
+}
+
+
+/*.stdout div.msg.human {}*/
+
+.stdout div.msg.bot {
+  float: left;
+}
+
+.stdout span.label {
+  float: right;
+  position: relative;
+  margin: 0px 15px 0px 15px;
+}
+
+
+/*.stdout span.label.human {}*/
+
+.stdout span.label.bot {
+  float: left;
+}
+
+.stdout span.msg {
+  background-color: #ffff00;
+  text-align: right;
+  padding: 0px 20px 0px 20px;
+}
+
+
+/*.stdout span.msg.human {}*/
+
+.stdout span.msg.bot {
+  background-color: #99ccff;
+  text-align: left;
+}
