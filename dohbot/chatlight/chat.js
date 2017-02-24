@@ -47,8 +47,7 @@ var Chat = (function (self) {
     container.appendChild(msgbox);
   }
 
-  function humanTalk(container, talk) {
-    console.log(talk);
+  function humanTalk(container, talk) {    
     var message = talk.value || '';
 
     if (message.length <= 0)
