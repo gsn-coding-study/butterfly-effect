@@ -1,6 +1,7 @@
 var Chat = (function (self) {
   var element = JS.element;
   var addEvent = JS.addEvent;
+  var get = JS.get;
   var replies = Replies;
 
   self.init = function (stdin, stdout) {
@@ -47,7 +48,7 @@ var Chat = (function (self) {
     container.appendChild(msgbox);
   }
 
-  function humanTalk(container, talk) {    
+  function humanTalk(container, talk) {
     var message = talk.value || '';
 
     if (message.length <= 0)
@@ -64,7 +65,7 @@ var Chat = (function (self) {
 
   function botTalk(container, message) {
     var reply = null;
-    
+
     for (var p in replies) {
       if (message.match(new RegExp(p, 'g'))) {
         reply = replies[p];
@@ -74,6 +75,27 @@ var Chat = (function (self) {
     reply = reply || message;
     msgbox(container, 'bot', '봇', reply);
   };
+
+  //webrtc exam
+  var local = null,
+    remote = null;
+  var localchann = null,
+    remotechann = null;
+
+  function rtcstat() {
+    addEvent(get('conn'), 'click', function () {
+      local = new RTCPeerConnection();
+      localchann = local.createDataChannel('local');
+      
+    });
+    addEvent(get('end'), 'click', function () {
+
+    });
+    addEvent(get('send'), 'click', function () {
+
+    });
+  }
+
 
   return self;
 
