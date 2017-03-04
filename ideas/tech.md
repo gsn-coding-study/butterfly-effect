@@ -4,11 +4,11 @@ IT업을 하면서 생기는 아이디어와 의문점, 트랜드 등에 대해 
 
 ## Free Talk
 
-* ${날짜}
-  * TBD
+* (2017.03.04) 챗봇을 만들어 봅시다.
 
 ## Reference
 
-* TBD
+* [챗봇입문자를위한 가이드북 1](https://brunch.co.kr/@five0203/22)
+* [챗봇입문자를위한 가이드북 2](https://brunch.co.kr/@five0203/23)
 
 
