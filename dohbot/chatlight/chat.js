@@ -57,7 +57,7 @@ var Chat = (function (self) {
       return;
 
     msgbox(container, 'human', '나', message);
-
+    if (sender) sender.send(message);
     talk.value = '';
 
     setTimeout(function () {
@@ -103,7 +103,9 @@ var Chat = (function (self) {
   remote.ondatachannel = function (event) {
     recver = event.channel;
     recver.onmessage = function (event) {
-      console.log('recved msg: ', event.data);
+      // console.log('recved msg: ', event.data);
+      msgbox(get('stdout'), 'bot', '원격', event.data);
+
       //TODO 데이터를 넘겨줄 것
       // event.data;
     };
@@ -148,9 +150,9 @@ var Chat = (function (self) {
     sender.send(data);
     console.log('send data:', data);
   }
-  JS.addEvent(JS.get('create'), 'click', function (e) {
-    sender.send(JS.get('stdout').innerHTML);
-  });
+  // JS.addEvent(JS.get('create'), 'click', function (e) {
+  //   sender.send(JS.get('stdout').innerHTML);
+  // });
 
   function onSendStateChange() {
     var state = sender.readyState;
