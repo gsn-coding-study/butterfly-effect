@@ -13,7 +13,10 @@ var JS = (function (self) {
   }
 
   self.get = function (s) {
-    return document.getElementById(s) || document.getElementsByClassName(s) || document.getElementsByTagName(s);
+    return document.getElementById(s) ||
+      document.getElementsByClassName(s) ||
+      document.getElementsByTagName(s) ||
+      document.querySelector(s);
   }
 
   self.element = function (tag, attrs) {

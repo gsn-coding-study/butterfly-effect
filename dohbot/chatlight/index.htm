@@ -4,21 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <title>Light Chat</title>
-  <link rel="stylesheet" href="chat.css">
+  <link rel="stylesheet" href="chat.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojify.js/1.1.0/css/basic/emojify.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/emojify.js/1.1.0/js/emojify.min.js"></script>
+  <script src="http://webrtc.github.io/adapter/adapter-latest.js"></script>
 </head>
 
 <body>
   <h1>Light Chat</h1>
-  <div id="stdin"></div>
+  <input id="webrtc-id"><button id="create">create</button><button id="join">join</button>
   <hr/>
   <div id="stdout"></div>
-
   <hr/>
-  <button id="conn">conn</button>
-  <button id="send">send</button>
-  <button id="end">end</button>
-  <div id="rtc"></div>
-  <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+  <div id="stdin"></div>
+  <hr/>
   <script src="vanilla.js"></script>
   <script src="replies.js"></script>
   <script src="chat.js"></script>
@@ -26,7 +25,7 @@
     //<!--
     (function () {
       JS.documentReady(function () {
-        Chat.init(JS.get('stdin'), JS.get('stdout'));
+        Chat.init(JS.get('stdin'), JS.get('stdout'));        
       });
     })();
     //-->

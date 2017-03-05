@@ -4,8 +4,10 @@ body {
 
 .stdout {
   border: 1px solid gray;
-  width: 700px;
-  height: 800px;
+  width: 800px;
+  height: 400px;  
+  display: inline-block;
+  overflow: auto ;      
 }
 
 .stdin input {
