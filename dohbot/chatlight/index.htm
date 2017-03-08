@@ -12,7 +12,8 @@
 
 <body>
   <h1>Light Chat</h1>
-  <input id="webrtc-id"><button id="create">create</button><button id="join">join</button>
+  Local: <input id="local-id" disabled> / Remote: <input id="remote-id">
+  <button id="invite">invite</button><button id="join">join</button><button id="start">start</button>
   <hr/>
   <div id="stdout"></div>
   <hr/>
@@ -25,7 +26,7 @@
     //<!--
     (function () {
       JS.documentReady(function () {
-        Chat.init(JS.get('stdin'), JS.get('stdout'));        
+        Chat.init(JS.get('stdin'), JS.get('stdout'));
       });
     })();
     //-->

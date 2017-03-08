@@ -57,9 +57,11 @@ var Chat = (function (self) {
       return;
 
     msgbox(container, 'human', '나', message);
-    if (sender) sender.send(message);
-    talk.value = '';
 
+    talk.value = '';
+    // setTimeout(function () {
+    //   sendData(message);
+    // }, 300);
     setTimeout(function () {
       botTalk(container, message);
     }, 300);
@@ -79,84 +81,73 @@ var Chat = (function (self) {
   };
 
   //webrtc exam
-
-  //create conn        
   var servers = {
     "iceServers": [{
       "url": "stun:stun2.1.google.com:19302"
     }]
   };
-  var local = new RTCPeerConnection(servers, null);
-  var sender = local.createDataChannel('send', null);
-  local.onicecandidate = function (e) {
-    onIceCandidate(local, e);
+  var webrtc = {
+    local: null,
+    chan: null,
+    candidate: null
   };
-  sender.onopen = sender.onclose = function () {
-    console.log('send state : ', sender.readyState);
-  };
-  var remote = new RTCPeerConnection(servers, null);
 
-  remote.onicecandidate = function (e) {
-    onIceCandidate(remote, e);
-  };
-  var recver = null;
-  remote.ondatachannel = function (event) {
-    recver = event.channel;
-    recver.onmessage = function (event) {
-      // console.log('recved msg: ', event.data);
-      msgbox(get('stdout'), 'bot', '원격', event.data);
-
-      //TODO 데이터를 넘겨줄 것
-      // event.data;
+  function invite(idout) {
+    var local = new RTCPeerConnection(servers, null);
+    var chan = local.createDataChannel('chat', null);
+    chan.onopen = chan.onclose = function () {
+      console.log('channel state : ', chan.readyState);
     };
-    recver.onopen = recver.onclose = function () {
-      console.log('recv state : ', sender.readyState);
+    // chan.ondatachannel
+    local.onicecandidate = onCandidate(local.createOffer());
+    webrtc.local = local;
+    webrtc.chan = chan;
+  }
+
+  function join(idout, remoteid) {
+    var local = new RTCPeerConnection(servers, null);
+    local.onicecandidate = onCandidate();
+    setRemoteDescription
+  }
+
+  function onCandidate(promise) {
+    return function (event) {
+      webrtc.candidate = event.candidate;
+      promise
+        .then(
+          function (desc) {
+            share(JSON.stringify({
+              desc: desc,
+              candidate: webrtc.candidate
+            }), function (id) {
+              idout.value = id;
+            });
+          },
+          console.log
+        );
+    }
+  }
+
+  function share(json, cb) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('PUT', 'https://o18y4g5m2m.execute-api.ap-northeast-2.amazonaws.com/v1', true);
+    xhr.onreadystatechange = function () {
+      console.log(this.status, this.readyState, this.responseText);
+      if (200 == this.status && 4 == this.readyState)
+        cb(this.responseText);
     };
-  };
-
-  function onIceCandidate(conn, event) {
-    function success() {
-      console.log('AddIceCandidate success');
-    }
-
-    function fail(err) {
-      console.log('AddIceCandidate fail:', err.toString());
-    }
-    [local, remote].filter(function (v) {
-      return conn !== v;
-    }).pop().addIceCandidate(event.candidate).then(success, fail);
+    xhr.send(json);
   }
 
-  function onDescError(err) {
-    console.log('fail to create session desc', err.toString());
-  }
-
-  function localDesc(desc) {
-    local.setLocalDescription(desc);
-    console.log('offer from local: ', desc.sdp);
-    remote.setRemoteDescription(desc);
-    remote.createAnswer().then(remoteDesc, onDescError);
-  }
-
-  function remoteDesc(desc) {
-    remote.setLocalDescription(desc);
-    console.log('answer from remote: ', desc.sdp);
-    local.setRemoteDescription(desc);
-  }
-
-  local.createOffer().then(localDesc, onDescError);
-
-  function sendData(data) {
-    sender.send(data);
-    console.log('send data:', data);
-  }
-  // JS.addEvent(JS.get('create'), 'click', function (e) {
-  //   sender.send(JS.get('stdout').innerHTML);
-  // });
-
-  function onSendStateChange() {
-    var state = sender.readyState;
-    console.log('send state is ', state);
+  function getSignal(id, cb) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://o18y4g5m2m.execute-api.ap-northeast-2.amazonaws.com/v1/' + id, true);
+    xhr.onreadystatechange = function () {
+      console.log(this.status, this.readyState, this.responseText);
+      if (200 == this.status && 4 == this.readyState)
+        cb(this.responseText);
+    };
+    xhr.send();
   }
 
   return self;
