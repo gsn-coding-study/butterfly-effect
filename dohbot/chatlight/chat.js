@@ -139,7 +139,7 @@ var Chat = (function (self) {
     xhr.send(json);
   }
 
-  function getSignal(id, cb) {
+  function getDesc(id, cb) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'https://o18y4g5m2m.execute-api.ap-northeast-2.amazonaws.com/v1/' + id, true);
     xhr.onreadystatechange = function () {
