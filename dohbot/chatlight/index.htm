@@ -12,7 +12,15 @@
 
 <body>
   <h1>Light Chat</h1>
-  Local: <input id="local-id" disabled> / Remote: <input id="remote-id">
+  <pre>
+  1. A가 Invite.  
+  2. 생성된 local-id를 B에게 전달.
+  3. B가 A의 id를 remote-id에 입력
+  4. B가 Join.
+  5. B가 생성된 local-id를 A에게 전달
+  6. A가 B의 id를 remote-id에 입력
+  7. 준비완료, 서로 start.
+  </pre> Local: <input id="local-id" disabled> Remote: <input id="remote-id"> Ice: <input id="ice-id">
   <button id="invite">invite</button><button id="join">join</button><button id="start">start</button>
   <hr/>
   <div id="stdout"></div>
@@ -27,6 +35,19 @@
     (function () {
       JS.documentReady(function () {
         Chat.init(JS.get('stdin'), JS.get('stdout'));
+
+        var idout = JS.get('local-id');
+        var remote = JS.get('remote-id');
+        var ice = JS.get('ice-id');
+        JS.addEvent(JS.get('invite'), 'click', function (e) {
+          Chat.invite(idout, ice);
+        });
+        JS.addEvent(JS.get('join'), 'click', function (e) {
+          Chat.join(idout, ice, remote.value);
+        });
+        JS.addEvent(JS.get('start'), 'click', function (e) {
+          Chat.start(remote.value, ice.value);
+        });
       });
     })();
     //-->

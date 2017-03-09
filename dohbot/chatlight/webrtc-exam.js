@@ -47,8 +47,6 @@ function onDescError(err) {
 }
 
 function localDesc(desc) {
-  var s = JSON.stringify(desc);
-  console.log(s);
   local.setLocalDescription(desc);
   console.log('offer from local: ', desc.sdp);
   remote.setRemoteDescription(desc);

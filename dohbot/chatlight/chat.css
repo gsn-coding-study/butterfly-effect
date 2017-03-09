@@ -2,12 +2,16 @@ body {
   text-align: center;
 }
 
+input {
+  width: 10%;
+}
+
 .stdout {
   border: 1px solid gray;
   width: 800px;
-  height: 400px;  
+  height: 400px;
   display: inline-block;
-  overflow: auto ;      
+  overflow: auto;
 }
 
 .stdin input {
