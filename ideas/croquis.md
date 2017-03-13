@@ -12,10 +12,13 @@
     * 다수가 쓸 수 있는 서비스형태가 아닌, '나'의 기록을 보여주는 일방적인 형태의 사이트
     * 내가 어떤식으로 변화하는지에 대한 기록과 그 기록을 남들이 보고 따라할 수 있도록 하는 것이 목표
     * [크리스베일리 블로그](http://alifeofproductivity.com/statistics/)
+
+* 2017.03.13
+  * Amazon Echo Dot을 이용한 개발 by dohbot (feat. sookim)
+  * [Alexa Skill Kit](https://developer.amazon.com/alexa-skills-kit#Ready%20to%20start%3F)
 * ${날짜}
   * TBD
 
 ## Reference
 
 * [GSN OSS 아이디어](https://docs.google.com/a/gscdn.com/spreadsheets/d/1RCbYBUseW1ifaq0Skpee3S-DJl4rU0I5utZD00f8OXE/edit?usp=sharing)
-

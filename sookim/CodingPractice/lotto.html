@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <style>
+        #lottooutput{
+          width : 200px;
+          height : 20px;
+          background-color : #99ccff;
+        }
+        </style>
+    </head>
+    <body>
+      <input type="button" value="number" id="release" />&nbsp;<div type=text id="lottooutput" />
+
+        <script>
+//<!--
+        (function () {
+          /**
+           * vanilla javascript @see https://gist.github.com/joyrexus/7307312
+           */
+          function documentReady(cb) {
+            document.addEventListener('DOMContentLoaded', cb);
+          }
+
+          function addEvent(el, event, cb, isCapture) {
+            if (window.addEventListener) {
+              el.addEventListener(event, cb, isCapture);
+            } else if (window.attachEvent) {
+              el.attachEvent("on" + event, cb);
+            } else {
+              el["on" + event] = cb;
+            }
+          }
+
+        var lotto = new Array();
+
+
+        function random(){
+
+          var size = 45;
+
+          for (i=0; i<6; i++){
+            var j = Math.ceil(Math.random() * size);
+            lotto.push(j);
+
+          }
+          lotto.sort(compNumber);
+          lottooutput.innerHTML=lotto;
+        }
+
+        function compNumber(a, b) {
+          return a - b;
+        }
+
+
+
+        documentReady(function() {
+          addEvent(release, 'click', random);
+      });
+
+      })();
+      //-->
+        </script>
+    </body>
+</html>

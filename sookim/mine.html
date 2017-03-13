@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0d Transitional//EN">
+<html>
+
+<head>
+  <title>Mine Sweeper</title>
+  <style>
+    #field {
+      display: table;
+      cursor: pointer
+    }
+
+    #field span {
+      display: table-cell;
+      width: 20px;
+      height: 20px;
+      padding: 0px;
+      border: 1px solid black;
+    }
+
+    #field div {
+      display: table-row;
+    }
+  </style>
+</head>
+
+<body>
+  <center>
+    <h1>Mine Sweeper</h1>
+    <div id="field" />
+  </center>
+  <script>
+    //<!--
+    (function () {
+      /**
+       * vanilla javascript @see https://gist.github.com/joyrexus/7307312
+       */
+      function documentReady(cb) {
+        document.addEventListener('DOMContentLoaded', cb);
+      }
+
+      function addEvent(el, event, cb, isCapture) {
+        if (window.addEventListener) {
+          el.addEventListener(event, cb, isCapture);
+        } else if (window.attachEvent) {
+          el.attachEvent("on" + event, cb);
+        } else {
+          el["on" + event] = cb;
+        }
+      }
+
+      function createModel(w, count) {
+        var m = {
+          mined: [],
+          shown: [],
+          width: w,
+          mines: count,
+          left: w * w - count,
+          playing: true
+        };
+
+        var size = m.width * m.width;
+        //initialize field
+        for (var i = 0; i < size; ++i) {
+          m.mined[i] = false;
+          m.shown[i] = false;
+        }
+
+        //install mine
+        for (var i = 0; i < m.mines; ++i) {
+          m.mined[i] = true;
+        }
+        for (var i = 0; i < size; ++i) {
+          var j = Math.floor(Math.random() * size);
+          var tmp = m.mined[i];
+          m.mined[i] = m.mined[j];
+          m.mined[j] = tmp;
+        }
+
+        return m;
+      }
+
+      function drawField(ele, m) {
+        var pos = 0;
+        ele.innerHTML = '';
+
+        for (var i = 0; i < m.width; ++i) {
+          for (var j = 0; j < m.width; ++j) {
+            var span = document.createElement('span');
+            span.setAttribute('id', pos++);
+            ele.appendChild(span);
+          }
+          ele.appendChild(document.createElement('div'));
+        }
+      }
+
+      function trackingAround(m, id) {
+        if (m.shown[id])
+          return;
+        console.log("id : " + id);
+        var adjs = getAdjacentIdxs(m, id);
+
+        var count = 0;
+        for (var i in adjs) {
+          if (m.mined[adjs[i]]) ++count;
+        }
+
+        m.shown[id] = true;
+        drawAdjacentCount(id, count);
+        if (0 == count) {
+          for (var i in adjs) {
+            trackingAround(m, adjs[i]);
+          }
+          return;
+        }
+
+        console.log('tend', id, adjs, count);
+        --m.left;
+      }
+
+      function getAdjacentIdxs(m, id) {
+        var w = Number.parseInt(m.width);
+        var i = Number.parseInt(id);
+        var adjs = [i - w, i + w]; //top,bottom
+
+        if (i % w != 0) { //left side
+          adjs.push(i - w - 1, i - 1, i + w - 1);
+        }
+        if (i % w != w - 1) { // right side
+          adjs.push(i - w + 1, i + 1, i + w + 1);
+        }
+        var idx = [];
+        for (var i in adjs) {
+          if (0 <= adjs[i] && adjs[i] < m.mined.length)
+            idx.push(adjs[i]);
+        }
+        console.log('>', idx);
+        return idx;
+      }
+
+      function drawAdjacentCount(idx, count) {
+        document.getElementById(idx).innerText = count;
+      }
+
+      function drawMine(idx) {
+        document.getElementById(idx).innerText = '☢';
+      }
+
+      function drawAllMines(m) {
+        for (var i in m.mined) {
+          if (m.mined[i]) drawMine(i);
+        }
+      }
+
+      documentReady(function () {
+        var m = createModel(16, 40);
+        var field = document.getElementById('field');
+        drawField(field, m);
+        addEvent(field, 'click', function (e) {
+          if (!m.playing)
+            return;
+
+          var cursor = e.target.id;
+          console.log('select cell', cursor);
+
+          if (m.mined[cursor]) {
+            m.playing = false;
+            alert('boom!');
+            drawAllMines(m);
+            return;
+          }
+
+          if (m.shown[cursor])
+            return;
+
+          trackingAround(m, cursor);
+
+          if (0 == m.left) { //check end condition
+            m.playing = false;
+            drawAllMines(m);
+            alert('congratulation !');
+            return;
+          }
+        });
+      });
+    })();
+    //-->
+  </script>
+</body>
+
+</html>

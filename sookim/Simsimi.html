@@ -1,7 +1,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0d
 Transitional//EN">
 <html>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojify.js/1.1.0/css/basic/emojify.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/emojify.js/1.1.0/js/emojify.min.js"></script>
 <head>
   <title>LET'S TALK TO SIMSIM</title>
   <style>
@@ -115,6 +116,7 @@ cb);
         }
       }
 
+
 	  function humanTalk(chatroom){
 
 		  var talk = document.getElementById('talk');
@@ -157,6 +159,7 @@ cb);
 		  label.innerHTML = "심심이";
 		  label.setAttribute('id', 'simLabel');
 
+
 /*
 		  if (message.match('안녕'))
 		  {
@@ -196,6 +199,9 @@ cb);
         talkBox.appendChild(label);
         talkBox.appendChild(span);
         chatroom.appendChild(talkBox);
+
+});
+
 	  };
 
 
@@ -212,6 +218,7 @@ cb);
       });
     })();
     //-->
+
   </script>
 </body>
 
