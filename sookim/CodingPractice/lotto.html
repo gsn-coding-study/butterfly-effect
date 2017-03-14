@@ -33,19 +33,40 @@
             }
           }
 
-        function random(){
-          var lotto = new Array();
+        function generateNumber(){
+          //1.
+          //
+          //
+          //
+          //
+          //
+
           var size = 45;
+          var lotto = new Array();
 
           for (var i=0; i<7; i++){
 
             var j = Math.ceil(Math.random() * size);
-            if(duplicate(true)){
+        //    if(j in lotto)
+        //     console.log('in!');
+            if (lotto.indexOf(j) !== -1){
               i--;
-            }else{
+              console.log('in!');
+            } else
+            {
               lotto.push(j);
             }
+            /*
+            if(j in lotto){
+              i--;
+              console.log('in!');
+            }else
+            {
+              lotto.push(j);
+            }
+            */
           }
+
           lotto.sort(compNumber);
           lottooutput.innerHTML=lotto;
         }
@@ -54,18 +75,17 @@
           return a - b;
         }
 
-        function duplicate(lotto, j) {
-          for(var z=0; z<lotto.length; z++){
-            if(lotto[i] == j){
+        function duplicate(is) {
+          for(var z=0; z<lotto.length; ++z){
+            if(lotto[z] === is){
               return true;
-              break;
             }
-
           }
+          return false;
         }
 
         documentReady(function() {
-          addEvent(release, 'click', random);
+          addEvent(release, 'click', generateNumber);
       });
 
       })();
