@@ -33,17 +33,18 @@
             }
           }
 
-        var lotto = new Array();
-
-
         function random(){
-
+          var lotto = new Array();
           var size = 45;
 
-          for (i=0; i<6; i++){
-            var j = Math.ceil(Math.random() * size);
-            lotto.push(j);
+          for (var i=0; i<7; i++){
 
+            var j = Math.ceil(Math.random() * size);
+            if(duplicate(true)){
+              i--;
+            }else{
+              lotto.push(j);
+            }
           }
           lotto.sort(compNumber);
           lottooutput.innerHTML=lotto;
@@ -53,7 +54,15 @@
           return a - b;
         }
 
+        function duplicate(lotto, j) {
+          for(var z=0; z<lotto.length; z++){
+            if(lotto[i] == j){
+              return true;
+              break;
+            }
 
+          }
+        }
 
         documentReady(function() {
           addEvent(release, 'click', random);
