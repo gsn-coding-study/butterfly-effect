@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <style>
+        #lottooutput{
+          width : 200px;
+          height : 20px;
+          background-color : #99ccff;
+        }
+        </style>
+    </head>
+    <body>
+      <input type="button" value="number" id="release" />&nbsp;<div type=text id="lottooutput" />
+
+        <script>
+//<!--
+        (function () {
+          /**
+           * vanilla javascript @see https://gist.github.com/joyrexus/7307312
+           */
+          function documentReady(cb) {
+            document.addEventListener('DOMContentLoaded', cb);
+          }
+
+          function addEvent(el, event, cb, isCapture) {
+            if (window.addEventListener) {
+              el.addEventListener(event, cb, isCapture);
+            } else if (window.attachEvent) {
+              el.attachEvent("on" + event, cb);
+            } else {
+              el["on" + event] = cb;
+            }
+          }
+
+        function generateNumber(){
+          //1.
+          //
+          //
+          //
+          //
+          //
+
+          var size = 45;
+          var lotto = new Array();
+
+          for (var i=0; i<7; i++){
+
+            var j = Math.ceil(Math.random() * size);
+
+            if(inArray(j) == true){
+              i--;
+              console.log('in!');
+            }else
+            {
+              lotto.push(j);
+            }
+
+          }
+
+          lotto.sort(compNumber);
+          lottooutput.innerHTML=lotto;
+        }
+
+        function compNumber(a, b) {
+          return a - b;
+        }
+
+        function inArray(is) {
+          for(var z=0; z<lotto.length; ++z){
+            if(lotto[z] === is){
+              return true;
+            }
+          }
+          return false;
+        }
+
+        documentReady(function() {
+          addEvent(release, 'click', generateNumber);
+      });
+
+      })();
+      //-->
+        </script>
+    </body>
+</html>
