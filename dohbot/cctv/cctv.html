@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.1/awesomplete.min.css" />
+  <script src="https://cdn.jsdelivr.net/cash/1.3.0/cash.min.js"></script>
+  <script src="http://210.104.234.205/api/channelFind2.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.1/awesomplete.min.js"></script>
+  <title>CCTV현황</title>
+  <style>
+    body {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <input id="label" />
+  <input type="hidden" id="code" />
+  <button id="play">play</button>
+  <hr/>
+  <!-- livePlay 내부를 뜯어보면 flashDiv에 플레이어를 삽입한다. -->
+  <div id="flashDiv"></div>
+
+  <script>
+    //opt = {method:'', url:'', header:{}, body:'', type:''}
+    function ajax(opt, cb) {
+      var xhr = new XMLHttpRequest();
+      xhr.open(opt.method, opt.url);
+      for (var k in opt.header) {
+        xhr.setRequestHeader(k, opt.header[k]);
+      }
+      xhr.onreadystatechange = function () {
+        if (4 !== this.readyState)
+          return;
+        if (200 === this.status) {
+          var body;
+          if ('xml' === opt.type)
+            body = this.responseXML;
+          else
+            body = this.responseText;
+          return cb(null, body);
+        }
+        return cb({
+          code: this.status,
+          body: this.responseText
+        });
+      };
+      var body = opt.body || '';
+      xhr.send(body);
+    }
+    var marks = [];
+    ajax({
+      method: 'GET',
+      url: ' https://o18y4g5m2m.execute-api.ap-northeast-2.amazonaws.com/v1/cors?url=http://topis.seoul.go.kr/kml/kmlCctvInfo.kml',
+      type: 'xml'
+    }, function (err, res) {
+      $(res).find('Placemark').each(function (mark) {
+        var m = $(mark);
+        var name = m.find('name').html();
+        var code = m.find("Data[name='code'] value").html();
+        marks.push({
+          label: name,
+          value: code
+        });
+      });
+      // new Awesomplete($('#lname'), {
+      //   list: marks
+      // });
+      console.log($('#label').first());
+      new Awesomplete($('#label')[0], {
+        list: marks,
+        replace: function (item) {
+          this.input.value = item.label;
+          $('#code').val(item.value);
+        }
+      });
+    });
+
+    $('#play').on('click', function (e) {
+      $('#flashDiv').empty();
+      var code = $('#code').val();
+      //autocomplete에서 선택하지 않은 경우 검색.
+      if (!code) {
+        var label = $('#label').val();
+        console.log(label);
+        var find = marks.find(function (item) {
+          if (-1 < item.label.indexOf(label)) {
+            return true;
+          }
+          return false;
+        });
+        if (!find) return;
+        code = find.value;
+        $('#label').val(find.label);
+      }
+      //console.log(code);
+      // cctv코드, width, height
+      livePlay(parseInt(code), 500, 300);
+      $('#code').val('');
+    });
+
+    //
+  </script>
+</body>
+
+</html>
