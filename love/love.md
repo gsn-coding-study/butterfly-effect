@@ -1,5 +1,5 @@
 * git을 이용하기 위한 명령어 순서
-  - git add love/*
+  - git add ./butterfly-effect/love/*
   - git commit -m "ailov"
   - git push -u origin master
 
