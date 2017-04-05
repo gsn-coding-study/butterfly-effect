@@ -1,13 +1,15 @@
-var express = require('express');
-var app = express();
+var app = require('express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
+app.get('/', function(req, res){
+  res.sendFile(__dirname + '/index.html');
 });
 
-var server = app.listen(3000, function () {
-  var host = server.address().address;
-  var port = server.address().port;
+io.on('connection', function(socket){
+  console.log('a user connected');
+});
 
-  console.log('앱은 http://%s:%s 에서 작동 중입니다.', host, port);
+http.listen(3000, function(){
+  console.log('listening on *:3000');
 });
