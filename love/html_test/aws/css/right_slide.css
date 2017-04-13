@@ -1,0 +1,73 @@
+html.open {
+}
+
+.mbtn {
+  width: 53px;
+  height: 53px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 1;
+
+ /* background-image: url("/wooricard/images/menu_icon.jpg");*/
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  display:block;
+}
+/*
+.close {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  background-image: url("http://s1.daumcdn.net/cfs.tistory/custom/blog/204/2048858/skin/images/close.png");
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+*/
+#m_menu {
+  display:none;
+  box-sizing: border-box;
+  padding:10%;
+  width: 100%;
+  border:0px solid #000 !important;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 1000002;
+  border: 0px solid #c9c9c9;
+  background-color: #0d6284;
+  text-align: center;
+  border-left:0px solid #00afc7;
+ 
+  transition: All 0.2s ease;
+  -webkit-transition: All 0.2s ease;
+  -moz-transition: All 0.2s ease;
+  -o-transition: All 0.2s ease;
+}
+
+#m_menu.open {
+  display: block;
+}
+
+.page_cover.open {
+  display: block;
+}
+
+.page_cover {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  border:0px solid #000;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1001;
+  display: none;
+}

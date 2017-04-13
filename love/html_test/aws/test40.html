@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Droppable - Default functionality</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
+  <style>
+  #box1 { width: 100px; height: 900px; padding: 0.5em; float: left; }
+  #box2 { width: 1200px; height: 100px; padding: 0.5em; float: none; margin: 0px 0px 0px 130px}
+  #box3 { width: 1200px; height: 100px; padding: 0.5em; float: none; margin: 22px 0px 0px 130px}
+  #box4 { width: 1200px; height: 100px; padding: 0.5em; float: none; margin: 22px 0px 0px 130px}
+  #box5 { width: 1200px; height: 100px; padding: 0.5em; float: none; margin: 22px 0px 0px 130px}
+  #box6 { width: 1200px; height: 100px; padding: 0.5em; float: none; margin: 22px 0px 0px 130px}
+  #box7 { width: 1200px; height: 100px; padding: 0.5em; float: none; margin: 22px 0px 0px 130px}
+  #box8 { width: 1200px; height: 100px; padding: 0.5em; float: none; margin: 22px 0px 0px 130px}
+  #box9 { width: 1200px; height: 100px; padding: 0.5em; float: none; margin: 22px 0px 0px 130px}
+  #timetable11, #timetable12, #timetable13, #timetable14, #timetable15, #timetable16, #timetable17 {
+    width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; border: 1px solid blue; background: #1ffff1; color: #333333;
+  }
+  #timetable21, #timetable22, #timetable23, #timetable24, #timetable25, #timetable26, #timetable27 {
+    width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; border: 1px solid #dddddd; background: #ffffff; color: #333333;
+  }
+  #timetable31, #timetable32, #timetable33, #timetable34, #timetable35, #timetable36, #timetable37 {
+    width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; border: 1px solid #dddddd; background: #ffffff; color: #333333;
+  }
+  #timetable41, #timetable42, #timetable43, #timetable44, #timetable45, #timetable46, #timetable47 {
+    width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; border: 1px solid #dddddd; background: #ffffff; color: #333333;
+  }
+  #timetable51, #timetable52, #timetable53, #timetable54, #timetable55, #timetable56, #timetable57 {
+    width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; border: 1px solid #dddddd; background: #ffffff; color: #333333;
+  }
+  #timetable61, #timetable62, #timetable63, #timetable64, #timetable65, #timetable66, #timetable67 {
+    width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; border: 1px solid #dddddd; background: #ffffff; color: #333333;
+  }
+  #timetable71, #timetable72, #timetable73, #timetable74, #timetable75, #timetable76, #timetable77 {
+    width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; border: 1px solid #dddddd; background: #ffffff; color: #333333;
+  }
+/*  #timetable81, #timetable82, #timetable83, #timetable84, #timetable85, #timetable86, #timetable87 {
+    width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; border: 1px solid #dddddd; background: #ffffff; color: #333333;
+  }
+  #timetable91, #timetable92, #timetable93, #timetable94, #timetable95, #timetable96, #timetable97 {
+    width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; border: 1px solid #dddddd; background: #ffffff; color: #333333;
+  }
+  #droppable-inner, #droppable2-inner { width: 120px; height: 120px; padding: 0.5em; float: left; margin: 10px; }
+*/
+  #draggable1, #draggable2, #draggable3, #draggable4 { width: 100px; height: 100px; padding: 0.5em; float: right; margin: 10px; border: 1px solid red; background: #ffffff; color: #333333;}
+
+
+
+}
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#draggable1, #draggable2, #draggable3, #draggable4").draggable();
+
+    $( "#droppable, #droppable-inner" ).droppable({
+      classes: {
+        "ui-droppable-active": "ui-state-active",
+        "ui-droppable-hover": "ui-state-hover"
+      },
+      drop: function( event, ui ) {
+        $( this )
+          .addClass( "ui-state-highlight" )
+          .find( "> p" )
+            .html( "Dropped!" );
+        return false;
+      }
+    });
+
+    $( "#droppable2, #droppable2-inner" ).droppable({
+      greedy: true,
+      classes: {
+        "ui-droppable-active": "ui-state-active",
+        "ui-droppable-hover": "ui-state-hover"
+      },
+      drop: function( event, ui ) {
+        $( this )
+          .addClass( "ui-state-highlight" )
+          .find( "> p" )
+            .html( "Dropped!" );
+      }
+    });
+  } );
+  </script>
+</head>
+<body>
+  <div id="box1">
+      <span id="timetable11">
+        <p></p>
+      </span>
+      <span id="timetable12">
+        <p>1</p>
+      </span>
+      <span id="timetable13">
+        <p>2</p>
+      </span>
+      <span id="timetable14">
+        <p>3</p>
+      </span>
+      <span id="timetable15">
+        <p>4</p>
+      </span>
+      <span id="timetable16">
+        <p>5</p>
+      </span>
+      <span id="timetable17">
+        <p>6</p>
+      </span>
+  </div>
+  <div id="box2">
+      <span id="timetable11">
+        <p>월</p>
+      </span>
+      <span id="timetable12">
+        <p>화</p>
+      </span>
+      <span id="timetable13">
+        <p>수</p>
+      </span>
+      <span id="timetable14">
+        <p>목</p>
+      </span>
+      <span id="timetable15">
+        <p>금</p>
+      </span>
+      <span id="timetable16">
+        <p>토</p>
+      </span>
+      <span id="timetable17">
+        <p>일</p>
+      </span>
+  </div>
+
+  <div id="box3">
+      <span id="timetable21"> </span>
+      <span id="timetable22"> </span>
+      <span id="timetable23"> </span>
+      <span id="timetable24"> </span>
+      <span id="timetable25"> </span>
+      <span id="timetable26"> </span>
+      <span id="timetable27"> </span>
+  </div>
+
+  <div id="box4">
+      <span id="timetable31"> </span>
+      <span id="timetable32"> </span>
+      <span id="timetable33"> </span>
+      <span id="timetable34"> </span>
+      <span id="timetable35"> </span>
+      <span id="timetable36"> </span>
+      <span id="timetable37"> </span>
+  </div>
+
+  <div id="box5">
+      <span id="timetable41"> </span>
+      <span id="timetable42"> </span>
+      <span id="timetable43"> </span>
+      <span id="timetable44"> </span>
+      <span id="timetable45"> </span>
+      <span id="timetable46"> </span>
+      <span id="timetable47"> </span>
+  </div>
+
+  <div id="box6">
+      <span id="timetable51"> </span>
+      <span id="timetable52"> </span>
+      <span id="timetable53"> </span>
+      <span id="timetable54"> </span>
+      <span id="timetable55"> </span>
+      <span id="timetable56"> </span>
+      <span id="timetable57"> </span>
+  </div>
+
+  <div id="box7">
+      <span id="timetable61"> </span>
+      <span id="timetable62"> </span>
+      <span id="timetable63"> </span>
+      <span id="timetable64"> </span>
+      <span id="timetable65"> </span>
+      <span id="timetable66"> </span>
+      <span id="timetable67"> </span>
+  </div>
+
+  <div id="box8">
+      <span id="timetable71"> </span>
+      <span id="timetable72"> </span>
+      <span id="timetable73"> </span>
+      <span id="timetable74"> </span>
+      <span id="timetable75"> </span>
+      <span id="timetable76"> </span>
+      <span id="timetable77"> </span>
+  </div>
+
+      <div id="draggable1"> </div>
+      <div id="draggable2"> </div>
+      <div id="draggable3"> </div>
+      <div id="draggable4"> </div>
+
+</body>
+</html>

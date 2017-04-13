@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="euc-kr">
+<title>CSS 속성</title>
+<style type="text/css">
+#field {
+  display: table;
+  cursor: pointer
+}
+
+#field span {
+  display: table-cell;
+  width: 20px;
+  height: 20px;
+  padding: 0px;
+  border: 1px solid black;
+}
+
+#field div {
+  display: table-row;
+}
+</style>
+</head>
+<body>
+  <center>
+    <h1>Mine Sweeper</h1>
+    <div id="field" />
+  </center>
+    <script>
+    function createModel(w, count) {
+      var m = {
+        mined: [],
+        shown: [],
+        width: w,
+        mines: count,
+        left: w * w - count,
+        playing: true
+      };
+
+      var size = m.width * m.width;
+      //initialize field
+      for (var i = 0; i < size; ++i) {
+        m.mined[i] = false;
+        m.shown[i] = false;
+      }
+  function drawField(ele, m) {
+    var pos = 0;
+    ele.innerHTML = '';
+
+    for (var i = 0; i < m.width; ++i) {
+      for (var j = 0; j < m.width; ++j) {
+        var span = document.createElement('span');
+        span.setAttribute('id', pos++);
+        ele.appendChild(span);
+      }
+      ele.appendChild(document.createElement('div'));
+    }
+  }
+}
+  drawField(field, m);
+  </script>
+</body>
+</html>
