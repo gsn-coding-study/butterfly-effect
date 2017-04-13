@@ -1,0 +1,61 @@
+#chatroom {
+  background-color: #CCFFFF;
+  border: 1px solid gray;
+  width : 460px;
+height : 500px;
+}
+
+#talk {
+width : 400px;
+position : fixed;
+bottom : 45px;
+left : 430px;
+}
+
+#sendTalk {
+position : fixed;
+bottom : 45px;
+left : 840px;
+}
+
+#humanTalkBox{
+float : right;
+clear : both;
+}
+
+#simTalkBox{
+float : left;
+clear : both;
+}
+
+#human{
+background-color : #ffff00;
+padding : 0px 20px 0px 20px;
+text-align : right;
+}
+
+#sim{
+background-color : #99ccff;
+padding : 0px 20px 0px 20px;
+text-align : left;
+}
+
+
+#humanLabel{
+position : relative;
+margin : 0px 15px 0px 15px;
+}
+
+#simLabel{
+position : relative;
+margin : 0px 15px 0px 15px;
+}
+
+#index {
+position : fixed;
+border: 1px solid gray;
+width : 370px;
+height : 270px;
+top : 100px;
+left : 30px;
+}
