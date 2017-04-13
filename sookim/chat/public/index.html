@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <link rel="stylesheet" href="/chat.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojify.js/1.1.0/css/basic/emojify.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojify.js/1.1.0/js/emojify.min.js"></script>
+    <style>
+    /*  * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+      */
+    </style>
+  </head>
+<body>
+  <center>
+    <h1>SIMSIMITALK</h1>
+  <br/>
+  <div id="chatroom" style="overflow:scroll"> </div>
+  <div id="index" style="text-align:left">
+    <h1><center> 심심이에게 물어보세요 </center></h1>
+    <span>
+      * 안녕 <br/>
+      * 뭐해? <br/>
+      * 오늘 날씨 어때? <br/>
+      * 오늘 스케쥴이 뭐야? <br/>
+      * 끝말잇기 하자 <br/>
+      * 자비스<br/>
+      * 시리야<br/>
+      * 그만하자 <br/>
+      <br/>
+      <span style="color:red">위 인덱스에 쓰여있지 않는 대화는 심심이가 따라 말합니다.</span>
+    </span>
+  </div>
+  <br/>
+  <input type="text" id="talk" />&nbsp;<input type="button" value="Talk!" id="sendTalk" />
+  <br/>
+  </center>
+<script src="/index.js"></script>
+  <script>
+
+  (function () {
+
+    function documentReady(cb) {
+      document.addEventListener('DOMContentLoaded',cb);
+    }
+    function addEvent(el, event, cb, isCapture) {
+      if (window.addEventListener) {
+        el.addEventListener(event, cb, isCapture);
+      } else if (window.attachEvent) {
+        el.attachEvent("on" + event, cb);
+      } else {
+        el["on" + event] = cb;
+      }
+    }
+
+  documentReady (function(){
+  var talk = document.getElementById('sendTalk');
+  var chatroom = document.getElementById('chatroom');
+
+  addEvent(talk, 'click', function(e){
+  humanTalk(chatroom);
+  });
+});
+})();
+
+</script>
+</body>
+</html>
