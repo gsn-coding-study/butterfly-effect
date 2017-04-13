@@ -9,6 +9,12 @@ __최근 스터디 로그__ [a-z]
 * [love](https://github.com/gsn-coding-study/butterfly-effect/blob/master/love/log_2017.03.16)
 * [sookim](https://github.com/gsn-coding-study/butterfly-effect/blob/master/sookim/Study_log/2017-04-06_Study_log.md)
 
+요런거 풀어보는 건 어때요?
+
+* [삼성 SW 역량 테스트 기출 문제](https://www.acmicpc.net/workbook/view/1152)
+
+
+
 ---
 
 ## Prologue
@@ -24,7 +30,7 @@ __최근 스터디 로그__ [a-z]
 ## Overview
 
 1. 일정
-   * 매주 목요일 9:30 ~ 10:30 (1시간)
+   * 매주 목요일 10:00 ~ 11:00 (1시간)
    * 하루 전에 일정 확인
 2. 진행
    * 방치형
@@ -43,3 +49,4 @@ __최근 스터디 로그__ [a-z]
 * [코딩도장](http://codingdojang.com/)
 * [온라인저지/알고스팟](https://algospot.com/judge/problem/list/)
 * [온라인저지/백준](https://www.acmicpc.net/)
+
