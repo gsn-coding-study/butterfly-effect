@@ -5,14 +5,13 @@
 
 __최근 스터디 로그__ [a-z]
 
-* [dohbot](https://github.com/gsn-coding-study/butterfly-effect/blob/master/dohbot/2017.04.06.dohbot.md)
+* [dohbot](https://github.com/gsn-coding-study/butterfly-effect/blob/master/dohbot/2017.04.27.dohbot.md)
 * [love](https://github.com/gsn-coding-study/butterfly-effect/blob/master/love/log_2017.03.16)
-* [sookim](https://github.com/gsn-coding-study/butterfly-effect/blob/master/sookim/Study_log/2017-04-06_Study_log.md)
+* [sookim](https://github.com/gsn-coding-study/butterfly-effect/blob/master/sookim/Study_log/2017-04-13_Study_log.md)
 
 요런거 풀어보는 건 어때요?
 
 * [삼성 SW 역량 테스트 기출 문제](https://www.acmicpc.net/workbook/view/1152)
-
 
 
 ---
