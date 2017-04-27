@@ -5,7 +5,7 @@
 
 __최근 스터디 로그__ [0-9a-z]
 
-* [188cm](https://github.com/gsn-coding-study/butterfly-effect/blob/master/188cm/170427.md)
+* [188cm](https://github.com/gsn-coding-study/butterfly-effect/blob/master/188cm/170427_188cm.md)
 * [dohbot](https://github.com/gsn-coding-study/butterfly-effect/blob/master/dohbot/2017.04.27.dohbot.md)
 * [love](https://github.com/gsn-coding-study/butterfly-effect/blob/master/love/log_2017.03.16)
 * [sookim](https://github.com/gsn-coding-study/butterfly-effect/blob/master/sookim/Study_log/2017-04-13_Study_log.md)
