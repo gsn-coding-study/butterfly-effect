@@ -3,8 +3,9 @@
 지속가능한 IT 인생을 위한 사적인 학습 이력 공유단. 
 스터디 시즌 2 (2017.03.02 ~ 2017.06.02)
 
-__최근 스터디 로그__ [a-z]
+__최근 스터디 로그__ [0-9a-z]
 
+* [188cm](https://github.com/gsn-coding-study/butterfly-effect/blob/master/188cm/170427.md)
 * [dohbot](https://github.com/gsn-coding-study/butterfly-effect/blob/master/dohbot/2017.04.27.dohbot.md)
 * [love](https://github.com/gsn-coding-study/butterfly-effect/blob/master/love/log_2017.03.16)
 * [sookim](https://github.com/gsn-coding-study/butterfly-effect/blob/master/sookim/Study_log/2017-04-13_Study_log.md)
